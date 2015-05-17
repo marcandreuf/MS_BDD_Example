@@ -27,8 +27,9 @@ public class WomenSection extends PageObject {
         super(driver);
     }
 
-    public void filterBy(String filterType) {
-        waitAndClickByXpath(XPATH_STYLE_FILTER+"//*[contains(text(),'"+filterType+"')]");        
+    public WomenSection filterBy(String filterType) {
+        waitAndClickByXpath(XPATH_STYLE_FILTER+"//*[contains(text(),'"+filterType+"')]");  
+        return this;
     }
 
     public String selectFirstItemWithDescKeyWord(String keyWord) {

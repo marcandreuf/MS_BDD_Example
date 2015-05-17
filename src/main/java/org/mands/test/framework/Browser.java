@@ -15,11 +15,11 @@ import org.slf4j.LoggerFactory;
  * @author marcandreuf
  */
 public class Browser {
-    
-    private WebDriver driver;
-    private final Logger logger = LoggerFactory.getLogger(Browser.class);
-    
     public enum BrowserName {Firefox, Chrome}
+    
+    private final Logger logger = LoggerFactory.getLogger(Browser.class);
+    private WebDriver driver;
+    
     
     public Browser (WebDriver driver){
         this.driver = driver;
@@ -54,7 +54,7 @@ public class Browser {
             return constructor.newInstance(driver);
         } catch (NoSuchMethodException | SecurityException | InstantiationException | 
           IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
-            throw new Exception("Page "+type+"its not a valid page object type.");
+            throw new Exception("Page "+type+" its not a valid page object type.");
         }
     }    
 }

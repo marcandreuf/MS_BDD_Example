@@ -28,7 +28,7 @@ public class ItemPage extends PageObject {
         super(driver);
     }
 
-    public void selectFirstAvailableColor() {
+    public ItemPage selectFirstAvailableColor() {
         List<WebElement> colors = driver.findElements(By.xpath(XPATH_COLORS));
         for(WebElement color : colors){
             if(!color.getAttribute("class").toLowerCase().contains(CLASS_OUTOFSTOCK)){
@@ -36,9 +36,10 @@ public class ItemPage extends PageObject {
                 break;
             }
         }
+        return this;
     }
 
-    public void selectFirstAvailableSize() {
+    public ItemPage selectFirstAvailableSize() {
         List<WebElement> sizes = driver.findElements(By.xpath(XPATH_SIZES));
         for(WebElement size : sizes){
             if(!size.getAttribute("class").toLowerCase().contains(CLASS_OUTOFSTOCK)){
@@ -46,6 +47,7 @@ public class ItemPage extends PageObject {
                 break;
             }
         }
+        return this;
     }
 
     public void addToBag() {

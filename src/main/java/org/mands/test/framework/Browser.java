@@ -1,13 +1,9 @@
 package org.mands.test.framework;
 
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.MethodHandles;
-import java.lang.invoke.MethodType;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import org.mands.test.framework.pageObjects.PageObject;
-import org.mands.test.framework.pageObjects.HomePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -22,7 +18,6 @@ public class Browser {
     
     private WebDriver driver;
     private final Logger logger = LoggerFactory.getLogger(Browser.class);
-
     
     public enum BrowserName {Firefox, Chrome}
     
@@ -44,6 +39,14 @@ public class Browser {
         logger.debug("Using browser "+browserName);
     }
   
+    public void open(String siteName) {
+        driver.get(siteName);
+    }
+    
+    public void close() {
+        driver.quit();
+    }
+    
     public <T extends PageObject> T onPage(Class<T> type) throws Exception, Throwable{
         Constructor<T> constructor;
         try {
@@ -53,9 +56,5 @@ public class Browser {
           IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
             throw new Exception("Page "+type+"its not a valid page object type.");
         }
-    }
-    
-    public void open(String siteName) {
-        driver.get(siteName);
-    }
+    }    
 }
